@@ -1,11 +1,14 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import './globals.css';
+// Components
+import Navbar from './components/navbar';
+import { AntdRegistry } from '@ant-design/nextjs-registry';
+import GlobalContextProvider from './context/globalContext/globalContext';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-    title: 'Toninho moedas',
+    title: 'Tony moedas',
     description: '',
 };
 
@@ -16,7 +19,14 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="pt-br">
-            <body className={inter.className}>{children}</body>
+            <body className={inter.className} style={{ margin: 0 }}>
+                <AntdRegistry>
+                    <GlobalContextProvider>
+                        <Navbar />
+                        {children}
+                    </GlobalContextProvider>
+                </AntdRegistry>
+            </body>
         </html>
     );
 }
