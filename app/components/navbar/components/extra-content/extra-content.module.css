@@ -1,0 +1,27 @@
+.extraContent {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.input {
+    width: 300px !important;
+    margin-right: 16px;
+}
+
+.globalIcon,
+.sunIcon {
+    font-size: 20px;
+    color: #CBD5E1 !important;
+    cursor: pointer;
+}
+
+.globalIcon {
+    margin-right: 8px;
+}
+
+@media (max-width: 768px) {
+    .input {
+        width: 260px !important;
+    }
+}

@@ -16,7 +16,15 @@
     border-radius: 4px;
 }
 
-.extraContent {
+.drawerToggle {
+    display: none;
+    position: absolute;
+    right: 16px;
+    height: 100%;
+    align-items: center;
+}
+
+.extraContentWrapper {
     position: absolute;
     right: 16px;
     height: 100%;
@@ -24,17 +32,17 @@
     align-items: center;
 }
 
-.input {
-    width: 300px !important;
-    margin-right: 16px;
-}
+@media (max-width:768px) {
+    .extraContentWrapper {
+        display: none;
+    }
 
-.globalIcon, .sunIcon {
-    font-size: 20px;
-    color: #CBD5E1 !important;
-    cursor: pointer;
-}
+    .logo,
+    .logoWrapper {
+        display: none;
+    }
 
-.globalIcon {
-    margin-right: 8px;
+    .drawerToggle {
+        display: block;
+    }
 }
