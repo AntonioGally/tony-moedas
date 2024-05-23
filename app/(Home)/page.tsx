@@ -1,22 +1,25 @@
 'use client';
-
 import { Flex, Skeleton, Typography } from 'antd';
-import useDataContext from '../context/data-context/hooks/useDataContext/useDataContext';
-import { coinList } from '../context/data-context/api/mock/coinList';
+import { useContext } from 'react';
+import { dataContext } from '../context/data-context/data-context';
 
 const Home = () => {
-    const { ticker } = useDataContext();
+    const { ticker, products } = useContext(dataContext);
 
-    if (Object.keys(ticker).length === 0) return <Skeleton />;
+    if (!ticker) return <Skeleton />;
 
     return (
         <div style={{ padding: 24 }}>
-            {coinList.map((coin) => (
-                <Flex key={coin.id} align="vertical">
+            <h1 onClick={() => console.log({ ticker, products })}>oi</h1>
+            {ticker.map((tick) => (
+                <Flex key={tick.trade_id}>
                     <div>
-                        <Typography.Title level={5}>{coin.name}:</Typography.Title>
-                        <Typography.Text>{ticker[coin.id]?.price}</Typography.Text>
+                        <Typography.Title level={5}>
+                            {products.find((product) => product.id === tick.product_id)?.display_name}:
+                        </Typography.Title>
+                        <Typography.Text>{tick.price}</Typography.Text>
                     </div>
+                    <Typography.Text></Typography.Text>
                 </Flex>
             ))}
         </div>

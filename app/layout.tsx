@@ -4,7 +4,7 @@ import { Inter } from 'next/font/google';
 import Navbar from './components/navbar';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
 import GlobalContextProvider from './context/globalContext/globalContext';
-import DataContextProvider from './context/data-context';
+import DataContextProvider from './context/data-context/data-context';
 
 const inter = Inter({ subsets: ['latin'] });
 
