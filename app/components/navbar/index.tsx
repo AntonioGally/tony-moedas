@@ -15,23 +15,25 @@ const Navbar = () => {
     }
 
     return (
-        <Menu mode="horizontal" className={style.wrapper} expandIcon>
-            <div key={'logo'} className={style.logoWrapper}>
-                <div className={style.logo} />
-            </div>
+        <>
+            <Menu mode="horizontal" className={style.wrapper} expandIcon>
+                <div key={'logo'} className={style.logoWrapper}>
+                    <div className={style.logo} />
+                </div>
 
-            <Menu.Item>Criptomoedas</Menu.Item>
-            <Menu.Item>Sobre</Menu.Item>
+                <Menu.Item key={'cripto'}>Criptomoedas</Menu.Item>
+                <Menu.Item key={'about'}>Sobre</Menu.Item>
 
-            <div className={style.extraContentWrapper}>
-                <ExtraContent />
-            </div>
+                <div key={'extra'} className={style.extraContentWrapper}>
+                    <ExtraContent />
+                </div>
 
-            <div onClick={handleDrawer} className={style.drawerToggle}>
-                <MenuOutlined />
-            </div>
+                <div key={'drawerToggle'} onClick={handleDrawer} className={style.drawerToggle}>
+                    <MenuOutlined />
+                </div>
+            </Menu>
             <NavbarDrawer open={openDrawer} onClose={handleDrawer} />
-        </Menu>
+        </>
     );
 };
 

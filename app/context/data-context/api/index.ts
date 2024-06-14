@@ -1,8 +1,3 @@
-// requests
-import { listCurrency } from './requests/listCurrency';
+import { listProducts } from './list-products/list-products';
 
-const apiFunctions = {
-    listCurrency,
-};
-
-export default apiFunctions;
+export { listProducts };

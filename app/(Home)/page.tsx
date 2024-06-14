@@ -1,26 +1,23 @@
 'use client';
-import { Flex, Skeleton, Typography } from 'antd';
+
 import { useContext } from 'react';
 import { dataContext } from '../context/data-context/data-context';
 
 const Home = () => {
-    const { ticker, products } = useContext(dataContext);
+    const { products, ticker } = useContext(dataContext);
 
-    if (!ticker) return <Skeleton />;
+    if (!ticker) return <h1>Loading...</h1>;
 
     return (
         <div style={{ padding: 24 }}>
-            <h1 onClick={() => console.log({ ticker, products })}>oi</h1>
-            {ticker.map((tick) => (
-                <Flex key={tick.trade_id}>
-                    <div>
-                        <Typography.Title level={5}>
-                            {products.find((product) => product.id === tick.product_id)?.display_name}:
-                        </Typography.Title>
-                        <Typography.Text>{tick.price}</Typography.Text>
-                    </div>
-                    <Typography.Text></Typography.Text>
-                </Flex>
+            <h1 onClick={() => console.log({ products, ticker })}>Oi</h1>
+            {products.products.map((product) => (
+                <div key={product.product_id}>
+                    <span>
+                        {product.base_name}: {ticker[product.product_id]?.price}
+                    </span>
+                    <br />
+                </div>
             ))}
         </div>
     );

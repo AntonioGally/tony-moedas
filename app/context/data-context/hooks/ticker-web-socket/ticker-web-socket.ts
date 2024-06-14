@@ -1,68 +1,45 @@
-import { useEffect, useMemo, useState } from 'react';
-import { debounce } from 'lodash'; // Importando lodash para usar a função debounce
-import { tickerType, statusType } from '../../types/data-context.types';
+import { useEffect, useState } from 'react';
+import { tickerType } from '../../types/ticker.type';
+import { productsType } from '../../types/products.type';
 
-function initializeWebSockets(productList: statusType['products'], handleMessage: (event: MessageEvent) => void) {
-    const tickerWebSocket = new WebSocket('wss://ws-feed.exchange.coinbase.com');
-
-    tickerWebSocket.onopen = () => {
-        tickerWebSocket!.send(
-            JSON.stringify({
-                type: 'subscribe',
-                product_ids: productList.map((product) => product.id),
-                channels: ['ticker_batch'],
-            }),
-        );
-    };
-
-    tickerWebSocket.onmessage = handleMessage;
-
-    tickerWebSocket.onerror = (event) => {
-        console.error('WebSocket Error:', event);
-    };
-
-    tickerWebSocket.onclose = () => {
-        console.log('WebSocket Disconnected');
-    };
-
-    return () => {
-        tickerWebSocket.close();
-    };
-}
-
-function useTickerWebSocket(productList: statusType['products']) {
-    const [ticker, setTicker] = useState<tickerType[]>([]);
-
-    // Debounced function to update the state with a delay
-    const updateTicker = useMemo(
-        () =>
-            debounce((tempTickObject: { [key: string]: tickerType }) => {
-                const sortedArray = Object.values(tempTickObject).sort(
-                    (a, b) => parseFloat(b.price) - parseFloat(a.price),
-                );
-                setTicker(sortedArray);
-            }, 500),
-        [],
-    ); // Update state every 500ms
+function useTickerWebSocket(productList: productsType) {
+    const [ticker, setTicker] = useState<{ [key: string]: tickerType }>();
 
     useEffect(() => {
-        const tempTickObject: { [key: string]: tickerType } = {};
-
         const handleMessage = (event: MessageEvent) => {
             const message = JSON.parse(event.data) as tickerType;
             if (message.type === 'ticker' && message.product_id) {
-                tempTickObject[message.product_id] = message;
-                console.log('Updating in ws ');
-                updateTicker(tempTickObject);
+                console.log('Updating in ws');
+                setTicker((prev) => ({ ...prev, [message.product_id]: message }));
             }
         };
 
-        const cleanupWebSockets = initializeWebSockets(productList, handleMessage);
+        const tickerWebSocket = new WebSocket('wss://ws-feed.exchange.coinbase.com');
+
+        tickerWebSocket.onopen = () => {
+            tickerWebSocket!.send(
+                JSON.stringify({
+                    type: 'subscribe',
+                    product_ids: productList.products.map((product) => product.product_id),
+                    channels: ['ticker_batch'],
+                }),
+            );
+        };
+
+        tickerWebSocket.onmessage = handleMessage;
+
+        tickerWebSocket.onerror = (event) => {
+            console.error('WebSocket Error:', event);
+        };
+
+        tickerWebSocket.onclose = () => {
+            console.log('WebSocket Disconnected');
+        };
 
         return () => {
-            cleanupWebSockets();
+            tickerWebSocket.close();
         };
-    }, [productList, updateTicker]);
+    }, [productList]);
 
     return { ticker };
 }
