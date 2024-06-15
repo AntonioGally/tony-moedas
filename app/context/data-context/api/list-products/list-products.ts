@@ -3,7 +3,7 @@ import { productsType } from '../../types/products.type';
 export async function listProducts() {
     'use server';
     return new Promise<productsType>((resolve, reject) => {
-        fetch('https://api.coinbase.com/api/v3/brokerage/market/products')
+        fetch('https://api.coinbase.com/api/v3/brokerage/market/products?limit=250&offset=0')
             .then(async (data) => {
                 const response = (await data.json()) as productsType;
                 resolve(sanitizeProducts(response));
@@ -15,7 +15,7 @@ export async function listProducts() {
 function sanitizeProducts(products: productsType): productsType {
     return {
         num_products: products.num_products,
-        products: products.products.slice(0, 250).filter((product) => {
+        products: products.products.filter((product) => {
             // Verificar se o produto é em USD
             const isUSD = product.product_id.endsWith('-USD');
 
