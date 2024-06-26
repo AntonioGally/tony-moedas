@@ -1,8 +1,9 @@
 import React, { useContext, useMemo } from 'react';
 import { dataContext } from '@/app/context/data-context/data-context';
 import { productsType } from '@/app/context/data-context/types/products.type';
-import { Flex, Skeleton, Tag } from 'antd';
+import { Flex, Skeleton, Tag, Typography } from 'antd';
 import { ColumnsType } from 'antd/es/table';
+import style from './columns.module.css';
 
 const useGetColumns = () => {
     const { ticker } = useContext(dataContext);
@@ -21,6 +22,14 @@ const useGetColumns = () => {
                 title: 'Name',
                 align: 'start',
                 width: '20%',
+                render: (value, record) => (
+                    <Flex dir="horizontal">
+                        <Typography.Text className={style.baseNameTitle}>{value}</Typography.Text>
+                        <Typography.Text className={style.baseDisplaySymbol}>
+                            {record.base_display_symbol}
+                        </Typography.Text>
+                    </Flex>
+                ),
             },
             {
                 dataIndex: 'price',
@@ -80,8 +89,8 @@ const useGetColumns = () => {
                 title: 'Last trade',
                 align: 'start',
                 render: (_, record) => {
-                    const lastTradeSide = ticker?.[record.product_id].side;
-                    const lastTradeSize = ticker?.[record.product_id].last_size;
+                    const lastTradeSide = ticker?.[record.product_id]?.side;
+                    const lastTradeSize = ticker?.[record.product_id]?.last_size;
 
                     if (!lastTradeSide || !lastTradeSize) return <Skeleton.Input size="small" />;
                     return `${lastTradeSide}, ${lastTradeSize} ${record.base_display_symbol}`;
