@@ -1,12 +1,15 @@
 import React, { useContext, useMemo } from 'react';
 import { dataContext } from '@/app/context/data-context/data-context';
 import { productsType } from '@/app/context/data-context/types/products.type';
-import { Flex, Skeleton, Tag, Typography } from 'antd';
+import { Flex, Skeleton, Typography } from 'antd';
+import { CaretDownFilled, CaretUpFilled } from '@ant-design/icons';
 import { ColumnsType } from 'antd/es/table';
 import style from './columns.module.css';
+import useNumberFormatter from '@/app/hooks/use-number-formatter/use-number-formatter';
 
 const useGetColumns = () => {
     const { ticker } = useContext(dataContext);
+    const { formatPrice } = useNumberFormatter();
 
     const getColumns = useMemo((): ColumnsType<productsType['products'][0]> => {
         const columns: ColumnsType<productsType['products'][0]> = [
@@ -21,7 +24,7 @@ const useGetColumns = () => {
                 dataIndex: 'base_name',
                 title: 'Name',
                 align: 'start',
-                width: '20%',
+                width: '15%',
                 render: (value, record) => (
                     <Flex dir="horizontal">
                         <Typography.Text className={style.baseNameTitle}>{value}</Typography.Text>
@@ -37,7 +40,7 @@ const useGetColumns = () => {
                 align: 'end',
                 render: (_, record) => {
                     const price = ticker?.[record.product_id]?.price;
-                    if (price) return `$ ${price}`;
+                    if (price) return formatPrice(price);
                     return <Skeleton.Input size="small" />;
                 },
                 width: '10%',
@@ -46,10 +49,20 @@ const useGetColumns = () => {
                 dataIndex: 'price_percentage_change_24h',
                 title: '24h %',
                 align: 'end',
-                render: (value, record) => {
-                    const openPrice = ticker?.[record.product_id]?.open_24h;
-                    if (openPrice) return `${Number(value).toFixed(2)} %`;
-                    return <Skeleton.Input size="small" />;
+                render: (value) => {
+                    const price = Number(value);
+                    if (price < 0) {
+                        return (
+                            <Typography.Text type="danger">
+                                <CaretDownFilled /> {(price * -1).toFixed(2)} %
+                            </Typography.Text>
+                        );
+                    }
+                    return (
+                        <Typography.Text type="success">
+                            <CaretUpFilled /> {price.toFixed(2)} %
+                        </Typography.Text>
+                    );
                 },
                 width: '10%',
             },
@@ -59,7 +72,7 @@ const useGetColumns = () => {
                 align: 'end',
                 render: (_, record) => {
                     const highPrice = ticker?.[record.product_id]?.high_24h;
-                    if (highPrice) return `$ ${highPrice}`;
+                    if (highPrice) return formatPrice(highPrice);
 
                     return <Skeleton.Input size="small" />;
                 },
@@ -77,12 +90,16 @@ const useGetColumns = () => {
 
                     return (
                         <Flex dir="horizontal" gap={4} justify="flex-end">
-                            <Tag color="success">{`$ ${highPrice}`}</Tag>
-                            <Tag color="error">{`$ ${lowPrice}`}</Tag>
+                            <Typography.Text type="success" style={{ fontSize: 12 }}>
+                                <CaretUpFilled /> {formatPrice(highPrice)}
+                            </Typography.Text>
+                            <Typography.Text type="danger" style={{ fontSize: 12 }}>
+                                <CaretDownFilled /> {formatPrice(lowPrice)}
+                            </Typography.Text>
                         </Flex>
                     );
                 },
-                width: '15%',
+                width: '18%',
             },
             {
                 dataIndex: 'last_trade',
@@ -93,19 +110,36 @@ const useGetColumns = () => {
                     const lastTradeSize = ticker?.[record.product_id]?.last_size;
 
                     if (!lastTradeSide || !lastTradeSize) return <Skeleton.Input size="small" />;
-                    return `${lastTradeSide}, ${lastTradeSize} ${record.base_display_symbol}`;
+                    if (lastTradeSide === 'buy') {
+                        return (
+                            <>
+                                <Typography.Text
+                                    style={{ textTransform: 'capitalize' }}
+                                >{`${lastTradeSide}, `}</Typography.Text>
+                                <Typography.Text type="success">{`${lastTradeSize} ${record.base_display_symbol}`}</Typography.Text>
+                            </>
+                        );
+                    }
+                    return (
+                        <>
+                            <Typography.Text
+                                style={{ textTransform: 'capitalize' }}
+                            >{`${lastTradeSide}, `}</Typography.Text>
+                            <Typography.Text type="danger">{`${lastTradeSize} ${record.base_display_symbol}`}</Typography.Text>
+                        </>
+                    );
                 },
                 width: '15%',
             },
             {
                 dataIndex: 'test',
                 title: 'test',
-                width: '18%',
+                width: '20%',
             },
         ];
 
         return columns;
-    }, [ticker]);
+    }, [ticker, formatPrice]);
 
     return { getColumns };
 };

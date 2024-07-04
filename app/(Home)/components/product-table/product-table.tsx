@@ -23,7 +23,7 @@ const ProductTable = () => {
                     },
                 }}
             >
-                <Table dataSource={products.products} columns={getColumns} pagination={false} />
+                <Table dataSource={products.products} columns={getColumns} pagination={false} scroll={{ x: 1440 }} />
             </ConfigProvider>
         </div>
     );
