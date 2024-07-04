@@ -6,9 +6,10 @@ import { CaretDownFilled, CaretUpFilled } from '@ant-design/icons';
 import { ColumnsType } from 'antd/es/table';
 import style from './columns.module.css';
 import useNumberFormatter from '@/app/hooks/use-number-formatter/use-number-formatter';
+import SmallLineChart from '../../components/small-line-chart/small-line-chart';
 
 const useGetColumns = () => {
-    const { ticker } = useContext(dataContext);
+    const { ticker, chartData } = useContext(dataContext);
     const { formatPrice } = useNumberFormatter();
 
     const getColumns = useMemo((): ColumnsType<productsType['products'][0]> => {
@@ -89,17 +90,17 @@ const useGetColumns = () => {
                     if (!lowPrice || !highPrice) return <Skeleton.Input size="small" />;
 
                     return (
-                        <Flex dir="horizontal" gap={4} justify="flex-end">
-                            <Typography.Text type="success" style={{ fontSize: 12 }}>
+                        <Flex vertical gap={4}>
+                            <Typography.Text type="success">
                                 <CaretUpFilled /> {formatPrice(highPrice)}
                             </Typography.Text>
-                            <Typography.Text type="danger" style={{ fontSize: 12 }}>
+                            <Typography.Text type="danger">
                                 <CaretDownFilled /> {formatPrice(lowPrice)}
                             </Typography.Text>
                         </Flex>
                     );
                 },
-                width: '18%',
+                width: '13%',
             },
             {
                 dataIndex: 'last_trade',
@@ -129,17 +130,22 @@ const useGetColumns = () => {
                         </>
                     );
                 },
-                width: '15%',
+                width: '16%',
             },
             {
-                dataIndex: 'test',
-                title: 'test',
-                width: '20%',
+                dataIndex: 'last_seven_days',
+                title: 'Last 7 days',
+                width: '23%',
+                render: (_, record) => {
+                    if (!chartData[record.product_id]) return <Skeleton.Input />;
+
+                    return <SmallLineChart chartData={chartData[record.product_id]} />;
+                },
             },
         ];
 
         return columns;
-    }, [ticker, formatPrice]);
+    }, [ticker, formatPrice, chartData]);
 
     return { getColumns };
 };
