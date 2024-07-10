@@ -1,4 +1,5 @@
 'use client';
+
 import React, { useContext } from 'react';
 import { ConfigProvider, Table } from 'antd';
 import useGetColumns from './hooks/use-get-columns/use-get-columns';
@@ -7,10 +8,11 @@ import style from './product-tabpe.module.css';
 
 const ProductTable = () => {
     const { getColumns } = useGetColumns();
-    const { products, ticker } = useContext(dataContext);
+    const { products, ticker, chartData } = useContext(dataContext);
+
     return (
         <div className={style.wrapper}>
-            <h1 onClick={() => console.log({ products, ticker })}>oi</h1>
+            <h1 onClick={() => console.log({ products, ticker, chartData })}>oi</h1>
             <ConfigProvider
                 theme={{
                     components: {
@@ -23,7 +25,13 @@ const ProductTable = () => {
                     },
                 }}
             >
-                <Table dataSource={products.products} columns={getColumns} pagination={false} scroll={{ x: 1440 }} />
+                <Table
+                    dataSource={products.products}
+                    columns={getColumns}
+                    pagination={false}
+                    scroll={{ x: 1440 }}
+                    rowKey={'key'}
+                />
             </ConfigProvider>
         </div>
     );

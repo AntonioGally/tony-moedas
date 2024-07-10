@@ -6,7 +6,7 @@ import { AntdRegistry } from '@ant-design/nextjs-registry';
 import GlobalContextProvider from './context/globalContext/globalContext';
 import DataContextProvider from './context/data-context/data-context';
 import { listProducts } from './context/data-context/api';
-import { loadCharts } from './(Home)/components/product-table/components/small-line-chart/utils/get-chart-data';
+import { loadCharts } from './context/data-context/api/get-chart-data/get-chart-data';
 
 const inter = Inter({ subsets: ['latin'] });
 

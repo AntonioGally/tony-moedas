@@ -135,12 +135,12 @@ const useGetColumns = () => {
             {
                 dataIndex: 'last_seven_days',
                 title: 'Last 7 days',
-                width: '23%',
+                align: 'left',
                 render: (_, record) => {
-                    if (!chartData[record.product_id]) return <Skeleton.Input />;
-
-                    return <SmallLineChart chartData={chartData[record.product_id]} />;
+                    if (!chartData[record.product_id]?.candles) return <Skeleton.Input size="small" />;
+                    return <SmallLineChart chartData={chartData[record.product_id].candles} />;
                 },
+                width: '23%',
             },
         ];
 

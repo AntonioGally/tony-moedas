@@ -4,7 +4,7 @@ import React, { PropsWithChildren, createContext } from 'react';
 import { tickerType } from './types/ticker.type';
 import useTickerWebSocket from './hooks/ticker-web-socket/ticker-web-socket';
 import { productsType } from './types/products.type';
-import { chartDataType } from '@/app/(Home)/components/product-table/components/small-line-chart/utils/get-chart-data';
+import { chartDataType } from './api/get-chart-data/get-chart-data';
 interface DataContextInterface {
     ticker: { [key: string]: tickerType } | undefined;
     products: productsType;
