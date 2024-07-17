@@ -8,18 +8,16 @@ import style from './product-tabpe.module.css';
 
 const ProductTable = () => {
     const { getColumns } = useGetColumns();
-    const { products, ticker, chartData } = useContext(dataContext);
+    const { products } = useContext(dataContext);
 
     return (
         <div className={style.wrapper}>
-            <h1 onClick={() => console.log({ products, ticker, chartData })}>oi</h1>
             <ConfigProvider
                 theme={{
                     components: {
                         Table: {
-                            cellPaddingBlock: 18,
+                            cellPaddingBlock: 14,
                             cellPaddingInline: 14,
-                            headerBg: 'transparent',
                             headerSplitColor: 'transparent',
                         },
                     },

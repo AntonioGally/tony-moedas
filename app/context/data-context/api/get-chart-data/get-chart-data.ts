@@ -52,7 +52,7 @@ function chunkArray<T>(array: T[], chunkSize: number): T[][] {
 }
 
 export async function loadCharts(productIds: string[]): Promise<chartDataType> {
-    const chunkedProductIds = chunkArray(productIds, 5);
+    const chunkedProductIds = chunkArray(productIds, 3);
 
     for (const chunk of chunkedProductIds) {
         const promises = chunk.map((productId) =>

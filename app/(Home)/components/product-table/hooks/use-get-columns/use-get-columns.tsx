@@ -138,7 +138,7 @@ const useGetColumns = () => {
                 align: 'left',
                 render: (_, record) => {
                     if (!chartData[record.product_id]?.candles) return <Skeleton.Input size="small" />;
-                    return <SmallLineChart chartData={chartData[record.product_id].candles} />;
+                    return <SmallLineChart chartData={chartData[record.product_id].candles.slice().reverse()} />;
                 },
                 width: '23%',
             },

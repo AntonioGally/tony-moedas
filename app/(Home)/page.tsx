@@ -1,8 +1,13 @@
+'use client';
+import { useContext } from 'react';
+import { globalContext } from '../context/globalContext/globalContext';
 import ProductTable from './components/product-table/product-table';
+import style from './home.module.css';
 
 const Home = () => {
+    const { theme } = useContext(globalContext);
     return (
-        <div>
+        <div className={`${style.wrapper} ${theme === 'dark' ? style.dark : ''}`}>
             <ProductTable />
         </div>
     );
