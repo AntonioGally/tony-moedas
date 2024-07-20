@@ -9,3 +9,8 @@
 - Dark mode (pegar do sistema)
 - WatchList
 - Trade link
+
+(17/07/2024)
+- Adicionar embed tradingView: https://www.tradingview.com/widget-docs/widgets/charts/advanced-chart/
+- WatchList
+- Trade link

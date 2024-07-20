@@ -7,6 +7,7 @@ import { ColumnsType } from 'antd/es/table';
 import style from './columns.module.css';
 import useNumberFormatter from '@/app/hooks/use-number-formatter/use-number-formatter';
 import SmallLineChart from '../../components/small-line-chart/small-line-chart';
+import ProductStar from '../../components/product-star/product-star';
 
 const useGetColumns = () => {
     const { ticker, chartData } = useContext(dataContext);
@@ -14,6 +15,13 @@ const useGetColumns = () => {
 
     const getColumns = useMemo((): ColumnsType<productsType['products'][0]> => {
         const columns: ColumnsType<productsType['products'][0]> = [
+            {
+                dataIndex: 'watchlist',
+                render: (_, record) => <ProductStar productId={record.product_id} />,
+                title: '',
+                align: 'center',
+                width: '4%',
+            },
             {
                 dataIndex: 'key',
                 render: (_, record, index) => index + 1,
@@ -100,7 +108,7 @@ const useGetColumns = () => {
                         </Flex>
                     );
                 },
-                width: '13%',
+                width: '11%',
             },
             {
                 dataIndex: 'last_trade',
@@ -130,7 +138,7 @@ const useGetColumns = () => {
                         </>
                     );
                 },
-                width: '16%',
+                width: '14%',
             },
             {
                 dataIndex: 'last_seven_days',

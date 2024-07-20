@@ -1,7 +1,8 @@
 'use client';
+
 import { useContext } from 'react';
 import { globalContext } from '../context/globalContext/globalContext';
-import ProductTable from './components/product-table/product-table';
+import ProductTable from './components/product-table';
 import style from './home.module.css';
 
 const Home = () => {

@@ -1,16 +1,28 @@
 import { useEffect, useState } from 'react';
 import { tickerType } from '../../types/ticker.type';
 import { productsType } from '../../types/products.type';
+import { debounce } from 'lodash';
 
 function useTickerWebSocket(productList: productsType) {
     const [ticker, setTicker] = useState<{ [key: string]: tickerType }>();
 
     useEffect(() => {
+        let messageObject = {} as { [key: string]: tickerType };
+
+        const updateTicker = debounce(() => {
+            console.log('Updating in state');
+            setTicker(() => messageObject);
+        }, 500);
+
         const handleMessage = (event: MessageEvent) => {
             const message = JSON.parse(event.data) as tickerType;
             if (message.type === 'ticker' && message.product_id) {
                 console.log('Updating in ws');
-                setTicker((prev) => ({ ...prev, [message.product_id]: message }));
+                messageObject = {
+                    ...messageObject,
+                    [message.product_id]: message,
+                };
+                updateTicker();
             }
         };
 

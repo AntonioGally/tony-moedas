@@ -1,14 +1,22 @@
 'use client';
 
-import React, { useContext } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { ConfigProvider, Table } from 'antd';
 import useGetColumns from './hooks/use-get-columns/use-get-columns';
 import { dataContext } from '@/app/context/data-context/data-context';
 import style from './product-tabpe.module.css';
+import HeaderButtons from './components/header-buttons/header-buttons';
+import { productTableContext } from './product-table.context';
 
 const ProductTable = () => {
     const { getColumns } = useGetColumns();
     const { products } = useContext(dataContext);
+    const { selectedFilter, favoritedProducts } = useContext(productTableContext);
+
+    const getDataSource = useMemo(() => {
+        if (selectedFilter === 'crypto') return products.products;
+        return products.products.filter((product) => favoritedProducts.includes(product.product_id));
+    }, [favoritedProducts, products.products, selectedFilter]);
 
     return (
         <div className={style.wrapper}>
@@ -23,8 +31,9 @@ const ProductTable = () => {
                     },
                 }}
             >
+                <HeaderButtons />
                 <Table
-                    dataSource={products.products}
+                    dataSource={getDataSource}
                     columns={getColumns}
                     pagination={false}
                     scroll={{ x: 1440 }}
