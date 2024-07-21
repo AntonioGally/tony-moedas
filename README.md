@@ -6,21 +6,23 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
+  <a href="https://github.com/AntonioGally/tony-moedas">
+    <img src="assets/logo.png" alt="Logo" width="80" height="80">
+  </a>
+
   <h3 align="center">Tony Moedas</h3>
 
   <p align="center">
     A crypto platform
     <br />
     <br />
-    <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    <a href="https://github.com/AntonioGally/tony-moedas">View Demo</a>
     ·
     <a href="https://github.com/AntonioGally/tony-moedas/issues/new">Report Bug</a>
     ·
     <a href="https://github.com/AntonioGally/tony-moedas/issues/new">Request Feature</a>
   </p>
 </div>
-
 
 
 <!-- TABLE OF CONTENTS -->
@@ -51,7 +53,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Tony Moedas][product-screenshot]](https://example.com)
 
 I started the "Tony Moedas" project with the intention of improving my technical knowledge in **websockets** and **state management**. I chose cryptocurrencies because I enjoy the subject, so I started looking for some APIs and saw that it was possible to do a lot of cool things using public endpoints/channels. The project currently lists cryptocurrencies and their real-time prices, providing a practical and dynamic view of the financial market. It ended up being a good challenge, both in terms of state management and API consumption. Believe me, the financial market is a mess, just like its APIs :/
 
@@ -59,18 +61,13 @@ This project allowed me to explore the complexities of real-time data consumptio
 
 But that's the idea, there's more content below :D
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 ### Built With
 
 This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
 * [![Next][Next.js]][Next-url]
 * [![React][React.js]][React-url]
-* [![Coinbase][Coinbase API]][Coinbase-url]
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
+* [![Coinbase][Coinbase]][Coinbase-url]
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -100,17 +97,12 @@ This is an example of how to list things you need to use the software and how to
    yarn dev
    ```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Add details page
+- [ ] Add crypto details page
 - [ ] Add trading book component
-
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
+- [ ] Add autocomplete for searching for cryptos
 
 <!-- CONTRIBUTING -->
 ## Contributing
@@ -126,8 +118,6 @@ Don't forget to give the project a star! Thanks again!
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <!-- CONTACT -->
 ## Contact
 
@@ -135,16 +125,15 @@ Antonio Gally - antonio.gally@gmail.com
 
 Project Link: [https://github.com/AntonioGally/tony-moedas](https://github.com/AntonioGally/tony-moedas)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/antonio-gally
-[product-screenshot]: images/product-screenshot.png
+[product-screenshot]: assets/product-screenshot.png
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
+[Coinbase]: https://img.shields.io/badge/Coinbase-0052FF?style=for-the-badge&logo=Coinbase&logoColor=white
 [Coinbase-url]: https://docs.cdp.coinbase.com/
