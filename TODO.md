@@ -14,3 +14,8 @@
 - Adicionar embed tradingView: https://www.tradingview.com/widget-docs/widgets/charts/advanced-chart/
 - WatchList
 - Trade link
+
+(20/07/2024)
+- Posterguei o desenvolvimento dos detalhes de cada moeda
+- Ajustar Readme
+- Deploy v0.1.0
