@@ -16,7 +16,7 @@
     A crypto platform
     <br />
     <br />
-    <a href="https://github.com/AntonioGally/tony-moedas">View Demo</a>
+    <a href="https://tony-moedas.vercel.app/">View Demo</a>
     ·
     <a href="https://github.com/AntonioGally/tony-moedas/issues/new">Report Bug</a>
     ·
@@ -53,7 +53,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Tony Moedas][product-screenshot]](https://example.com)
+[![Tony Moedas][product-screenshot]](https://tony-moedas.vercel.app/)
 
 I started the "Tony Moedas" project with the intention of improving my technical knowledge in **websockets** and **state management**. I chose cryptocurrencies because I enjoy the subject, so I started looking for some APIs and saw that it was possible to do a lot of cool things using public endpoints/channels. The project currently lists cryptocurrencies and their real-time prices, providing a practical and dynamic view of the financial market. It ended up being a good challenge, both in terms of state management and API consumption. Believe me, the financial market is a mess, just like its APIs :/
 
@@ -123,7 +123,7 @@ Don't forget to give the project a star! Thanks again!
 
 Antonio Gally - antonio.gally@gmail.com
 
-Project Link: [https://github.com/AntonioGally/tony-moedas](https://github.com/AntonioGally/tony-moedas)
+Project Link: [https://tony-moedas.vercel.app/](https://tony-moedas.vercel.app/)
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
