@@ -1,0 +1,21 @@
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    margin: 0;
+    text-transform: capitalize;
+}
+
+.subtitle {
+    margin-left: 8px;
+    text-transform: uppercase;
+    color: #94a3b8 !important;
+}
+
+.icon {
+    cursor: pointer;
+    font-size: 18px;
+}
