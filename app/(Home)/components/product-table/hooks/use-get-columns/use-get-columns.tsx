@@ -59,17 +59,17 @@ const useGetColumns = () => {
                 title: '24h %',
                 align: 'end',
                 render: (value) => {
-                    const price = Number(value);
-                    if (price < 0) {
+                    const percentage = Number(value);
+                    if (percentage < 0) {
                         return (
                             <Typography.Text type="danger">
-                                <CaretDownFilled /> {(price * -1).toFixed(2)} %
+                                <CaretDownFilled /> {(percentage * -1).toFixed(2)} %
                             </Typography.Text>
                         );
                     }
                     return (
                         <Typography.Text type="success">
-                            <CaretUpFilled /> {price.toFixed(2)} %
+                            <CaretUpFilled /> {percentage.toFixed(2)} %
                         </Typography.Text>
                     );
                 },
