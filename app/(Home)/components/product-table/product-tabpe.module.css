@@ -1,6 +1,16 @@
 .wrapper {
+    padding: 42px 0;
+    background-color: #eee;
+    min-height: 100vh;
+}
+
+.tableWrapper {
     width: 90%;
     margin: auto;
+}
+
+.wrapper.dark {
+    background-color: #222;
 }
 
 @media (max-width: 768px) {

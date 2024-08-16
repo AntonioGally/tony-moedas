@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation';
 import { productsType } from '../context/data-context/types/products.type';
 import ProductDetails from './product-details';
-import ProductDetailsProvider from './product-details.context';
+import ProductDetailsProvider from './context/product-details.context';
 import ProductTableProvider from '../(Home)/components/product-table/product-table.context';
 
 async function listProduct(productId: string) {

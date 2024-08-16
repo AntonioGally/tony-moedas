@@ -1,7 +1,3 @@
-.informationSider {
-    min-height: 100vh;
-}
-
-@media (max-width: 768px) {
-   
+.wrapper {
+    min-height: 100vh !important;
 }

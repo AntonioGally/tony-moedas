@@ -6,10 +6,8 @@ import InformationSider from './components/information-sider/information-sider';
 
 const ProductDetails = () => {
     return (
-        <Layout hasSider>
-            <Sider breakpoint={'md'} width={350} className={style.informationSider}>
-                <InformationSider />
-            </Sider>
+        <Layout hasSider className={style.wrapper}>
+            <InformationSider />
             <Content>Content</Content>
             <Sider width={300}>Right</Sider>
         </Layout>

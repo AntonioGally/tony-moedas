@@ -19,3 +19,15 @@
 - Posterguei o desenvolvimento dos detalhes de cada moeda
 - Ajustar Readme
 - Deploy v0.1.0
+
+(30/07/2024)
+- Tirar dataProvider do layout, só preciso dele na página de Home
+- Adicionar essas infos na página de detalhes:
+    - Volume 24h
+    - High and Low
+    - Last trade
+(15/08/2024)
+- Adicionar gráfico trading view
+- Adicionar trade book
+- Responsividade
+- Adicionar lógica de tabs para cada moeda selecionada

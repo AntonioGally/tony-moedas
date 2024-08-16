@@ -1,16 +1,16 @@
-'use client';
-
-import { useContext } from 'react';
-import { globalContext } from '../context/globalContext/globalContext';
+import { listProducts } from '../context/data-context/api';
+import { loadCharts } from '../context/data-context/api/get-chart-data/get-chart-data';
+import DataContextProvider from '../context/data-context/data-context';
 import ProductTable from './components/product-table';
-import style from './home.module.css';
 
-const Home = () => {
-    const { theme } = useContext(globalContext);
+const Home = async () => {
+    const products = await listProducts();
+    const chartData = await loadCharts(products.products.map((product) => product.product_id));
+
     return (
-        <div className={`${style.wrapper} ${theme === 'dark' ? style.dark : ''}`}>
+        <DataContextProvider products={products} chartData={chartData}>
             <ProductTable />
-        </div>
+        </DataContextProvider>
     );
 };
 

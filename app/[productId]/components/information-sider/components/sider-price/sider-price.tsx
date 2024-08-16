@@ -1,6 +1,6 @@
 'use client';
 import React, { useContext } from 'react';
-import { productDetailsContext } from '@/app/[productId]/product-details.context';
+import { productDetailsContext } from '@/app/[productId]/context/product-details.context';
 import style from './sider-price.module.css';
 import { Skeleton, Typography } from 'antd';
 import { CaretDownFilled, CaretUpFilled } from '@ant-design/icons';

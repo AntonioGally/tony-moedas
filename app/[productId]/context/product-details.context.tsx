@@ -1,9 +1,9 @@
 'use client';
 
 import React, { createContext, PropsWithChildren } from 'react';
-import useProductTicker from './hooks/use-product-ticker/use-product-ticker';
-import { tickerType } from '../context/data-context/types/ticker.type';
-import { productsType } from '../context/data-context/types/products.type';
+import useProductTicker from '../hooks/use-product-ticker/use-product-ticker';
+import { tickerType } from '../../context/data-context/types/ticker.type';
+import { productsType } from '../../context/data-context/types/products.type';
 
 type productDetailsContextType = {
     productTicker: tickerType | undefined;

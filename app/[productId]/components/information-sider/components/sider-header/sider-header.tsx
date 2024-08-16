@@ -2,7 +2,7 @@
 import React, { useContext } from 'react';
 import style from './sider-header.module.css';
 import { Typography } from 'antd';
-import { productDetailsContext } from '@/app/[productId]/product-details.context';
+import { productDetailsContext } from '@/app/[productId]/context/product-details.context';
 import ProductStar from '@/app/(Home)/components/product-table/components/product-star/product-star';
 
 const SiderHeader = () => {
