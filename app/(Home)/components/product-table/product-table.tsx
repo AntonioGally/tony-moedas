@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useContext, useMemo } from 'react';
+import { useRouter } from 'next/navigation';
 import { ConfigProvider, Table } from 'antd';
 import useGetColumns from './hooks/use-get-columns/use-get-columns';
 import { dataContext } from '@/app/context/data-context/data-context';
@@ -10,6 +11,7 @@ import { productTableContext } from './product-table.context';
 import { globalContext } from '@/app/context/globalContext/globalContext';
 
 const ProductTable = () => {
+    const router = useRouter();
     const { theme } = useContext(globalContext);
     const { products } = useContext(dataContext);
     const { selectedFilter, favoritedProducts } = useContext(productTableContext);
@@ -42,6 +44,10 @@ const ProductTable = () => {
                         pagination={false}
                         scroll={{ x: 1440 }}
                         rowKey={'key'}
+                        onRow={(data) => ({
+                            style: { cursor: 'pointer' },
+                            onClick: () => router.push(`/${data.product_id}`),
+                        })}
                     />
                 </div>
             </ConfigProvider>

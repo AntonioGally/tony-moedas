@@ -1,15 +1,18 @@
 import { Layout } from 'antd';
-import { Content } from 'antd/es/layout/layout';
-import Sider from 'antd/es/layout/Sider';
 import style from './product-details.module.css';
 import InformationSider from './components/information-sider/information-sider';
+import dynamic from 'next/dynamic';
+
+const TradingViewChart = dynamic(() => import('./components/trading-view-chart/trading-view-chart'), {
+    ssr: false,
+});
 
 const ProductDetails = () => {
     return (
         <Layout hasSider className={style.wrapper}>
             <InformationSider />
-            <Content>Content</Content>
-            <Sider width={300}>Right</Sider>
+            <TradingViewChart />
+            {/* <Sider width={300}>Right</Sider> */}
         </Layout>
     );
 };

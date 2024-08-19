@@ -28,6 +28,8 @@
     - Last trade
 (15/08/2024)
 - Adicionar gráfico trading view
-- Adicionar trade book
+(18/08/2024)
 - Responsividade
 - Adicionar lógica de tabs para cada moeda selecionada
+- Adicionar News Widget: https://www.tradingview.com/widget-docs/widgets/news/top-stories/
+- Adicionar trade book

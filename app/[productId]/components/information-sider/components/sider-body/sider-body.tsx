@@ -51,7 +51,7 @@ const SiderBody = () => {
     return (
         <div className={style.wrapper}>
             <div className={style.item}>
-                <Typography.Title className={style.title} level={5}>
+                <Typography.Title className={style.title} level={5} style={{ marginTop: 0 }}>
                     Variation volume (24h)
                 </Typography.Title>
                 {productTicker?.volume_24h ? (
