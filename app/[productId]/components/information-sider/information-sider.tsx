@@ -9,8 +9,10 @@ import SiderBody from './components/sider-body/sider-body';
 import { Divider } from 'antd';
 
 const InformationSider = () => {
+    const isMobile = window.innerWidth < 768;
+
     return (
-        <Sider theme="light" breakpoint={'md'} width={310} className={style.wrapper}>
+        <Sider theme="light" collapsible={false} width={isMobile ? '100%' : 310} className={style.wrapper}>
             <SiderHeader />
             <SiderPrice />
             <Divider />

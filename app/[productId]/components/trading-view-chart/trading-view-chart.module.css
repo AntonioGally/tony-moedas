@@ -1,4 +1,18 @@
+.contentWrapper {
+    width: 100% !important;
+}
+
 .wrapper {
-    height: 100%;
     padding: 24px 12px;
+}
+
+@media (max-width: 768px) {
+    .wrapper {
+        height: 410px !important;
+        padding: 12px 0;
+    }
+
+    .contentWrapper {
+        min-height: 410px !important;
+    }
 }

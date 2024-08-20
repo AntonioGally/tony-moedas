@@ -1,3 +1,10 @@
 .wrapper {
     min-height: calc(100vh - 46px) !important;
 }
+
+@media (max-width: 768px) {
+    .wrapper {
+        padding: 12px;
+        flex-direction: column !important;
+    }
+}
