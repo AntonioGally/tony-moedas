@@ -30,6 +30,12 @@
 - Adicionar gráfico trading view
 (18/08/2024)
 - Responsividade
+(19/08/2024)
 - Adicionar lógica de tabs para cada moeda selecionada
+    - Usar Segmented component
+    - Máx 5 itens
+    - Ver responsividade no Mobile
+- Remover lógica de ThemeSwitcher
 - Adicionar News Widget: https://www.tradingview.com/widget-docs/widgets/news/top-stories/
+    - Remover quando mobile
 - Adicionar trade book

@@ -1,5 +1,5 @@
 'use client';
-import { Menu } from 'antd';
+import { Menu, Segmented } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
 import style from './navbar.module.css';
 import { useContext, useState } from 'react';
@@ -18,13 +18,12 @@ const Navbar = () => {
 
     return (
         <>
-            <Menu mode="horizontal" className={style.wrapper} expandIcon activeKey="crypto">
-                <div key={'logo'} className={style.logoWrapper}>
-                    <div className={`${style.logo} ${theme === 'dark' ? style.dark : ''}`} />
-                </div>
+            <Menu mode="horizontal" className={style.wrapper} expandIcon>
+                <Menu.Item key={'home'}>Home</Menu.Item>
 
-                <Menu.Item key={'crypto'}>Cryptocurrencies</Menu.Item>
-                {/* <Menu.Item key={'about'}>Sobre</Menu.Item> */}
+                <div>
+                    <Segmented options={['Bitcoin - BTC', 'Etherium - ETH']} />
+                </div>
 
                 <div key={'extra'} className={style.extraContentWrapper}>
                     <ExtraContent />
