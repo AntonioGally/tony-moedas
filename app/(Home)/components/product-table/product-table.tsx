@@ -8,13 +8,13 @@ import { dataContext } from '@/app/context/data-context/data-context';
 import style from './product-tabpe.module.css';
 import HeaderButtons from './components/header-buttons/header-buttons';
 import { productTableContext } from './product-table.context';
-import { globalContext } from '@/app/context/globalContext/globalContext';
+import useGlobalContext from '@/app/context/globalContext/useGlobalContext';
 
 const ProductTable = () => {
     const router = useRouter();
-    const { theme } = useContext(globalContext);
     const { products } = useContext(dataContext);
     const { selectedFilter, favoritedProducts } = useContext(productTableContext);
+    const { addProductToList } = useGlobalContext();
 
     const { getColumns } = useGetColumns();
 
@@ -24,7 +24,7 @@ const ProductTable = () => {
     }, [favoritedProducts, products.products, selectedFilter]);
 
     return (
-        <div className={`${style.wrapper} ${theme === 'dark' ? style.dark : ''}`}>
+        <div className={style.wrapper}>
             <ConfigProvider
                 theme={{
                     components: {
@@ -46,7 +46,13 @@ const ProductTable = () => {
                         rowKey={'key'}
                         onRow={(data) => ({
                             style: { cursor: 'pointer' },
-                            onClick: () => router.push(`/${data.product_id}`),
+                            onClick: () => {
+                                addProductToList({
+                                    productId: data.product_id,
+                                    productName: `${data.base_name} - ${data.base_display_symbol}`,
+                                });
+                                router.push(`/${data.product_id}`);
+                            },
                         })}
                     />
                 </div>

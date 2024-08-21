@@ -6,6 +6,7 @@ import { productDetailsContext } from '../../context/product-details.context';
 
 const TradingViewChart = () => {
     const isMobile = window.innerWidth < 768;
+
     const { productInfo } = useContext(productDetailsContext);
     const containerRef = useRef<HTMLDivElement>(null);
 
@@ -21,7 +22,7 @@ const TradingViewChart = () => {
             script.innerHTML = `
                 {
                   "autosize": true,
-                  "symbol": "COINBASE:${productInfo.base_display_symbol}USDT",
+                  "symbol": "${productInfo.base_display_symbol}USD",
                   "interval": "D",
                   "timezone": "Etc/UTC",
                   "theme": "dark",
