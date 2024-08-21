@@ -19,3 +19,23 @@
 - Posterguei o desenvolvimento dos detalhes de cada moeda
 - Ajustar Readme
 - Deploy v0.1.0
+
+(30/07/2024)
+- Tirar dataProvider do layout, só preciso dele na página de Home
+- Adicionar essas infos na página de detalhes:
+    - Volume 24h
+    - High and Low
+    - Last trade
+(15/08/2024)
+- Adicionar gráfico trading view
+(18/08/2024)
+- Responsividade
+(19/08/2024)
+- Adicionar lógica de tabs para cada moeda selecionada
+    - Usar Segmented component
+    - Máx 5 itens
+    - Ver responsividade no Mobile
+- Remover lógica de ThemeSwitcher
+- Adicionar News Widget: https://www.tradingview.com/widget-docs/widgets/news/top-stories/
+    - Remover quando mobile
+- Adicionar trade book

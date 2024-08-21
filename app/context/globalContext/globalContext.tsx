@@ -1,28 +1,52 @@
 'use client';
 
-import { PropsWithChildren, createContext, useState } from 'react';
-import { GlobalContextTypes, languageType } from './globalContext.types';
+import { PropsWithChildren, createContext, useCallback, useEffect, useState } from 'react';
 import { ConfigProvider, theme as AntTheme } from 'antd';
 
-export const globalContext = createContext({} as GlobalContextTypes);
+export type productSelectorType = {
+    productId: string;
+    productName: string;
+};
+
+type globalContextTypes = {
+    productsSelector: productSelectorType[];
+    addProductToList: (product: productSelectorType) => void;
+};
+
+export const globalContext = createContext({} as globalContextTypes);
 
 const GlobalContextProvider = ({ children }: PropsWithChildren) => {
-    const [language, setLanguage] = useState<languageType>('pt-br');
-    const [theme, setTheme] = useState<'light' | 'dark'>('dark');
+    const [productsSelector, setProductsSelector] = useState<productSelectorType[]>([]);
 
-    function updateLanguage(newLanguage: languageType) {
-        setLanguage(newLanguage);
-    }
+    useEffect(() => {
+        const session = sessionStorage.getItem('product_ids');
+        if (!session) return;
+        const savedProducts = JSON.parse(session) as productSelectorType[];
+        setProductsSelector(savedProducts);
+    }, []);
 
-    function updateTheme(newTheme: 'light' | 'dark') {
-        setTheme(newTheme);
-    }
+    const addProductToList = useCallback(
+        (product: productSelectorType) => {
+            let clone = productsSelector.slice();
+            const isProductExistent = clone.find((p) => p.productId === product.productId);
+            if (isProductExistent) {
+                clone = clone.filter((p) => p.productId !== product.productId);
+                clone.unshift(product);
+            } else if (clone.length < 5) {
+                clone.push(product);
+            }
+
+            setProductsSelector(clone);
+            sessionStorage.setItem('product_ids', JSON.stringify(clone));
+        },
+        [productsSelector],
+    );
 
     return (
-        <globalContext.Provider value={{ language, updateLanguage, updateTheme, theme }}>
+        <globalContext.Provider value={{ addProductToList, productsSelector }}>
             <ConfigProvider
                 theme={{
-                    algorithm: theme === 'dark' ? AntTheme.darkAlgorithm : AntTheme.defaultAlgorithm,
+                    algorithm: AntTheme.darkAlgorithm,
                 }}
             >
                 {children}

@@ -1,4 +1,10 @@
 .wrapper {
+    padding: 42px 0;
+    background-color: #222;
+    min-height: 100vh;
+}
+
+.tableWrapper {
     width: 90%;
     margin: auto;
 }

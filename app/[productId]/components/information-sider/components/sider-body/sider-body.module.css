@@ -1,0 +1,12 @@
+.wrapper {
+    width: 100%;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    margin-bottom: 0px !important;
+}
