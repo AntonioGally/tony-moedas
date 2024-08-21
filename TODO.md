@@ -36,6 +36,7 @@
     - Máx 5 itens
     - Ver responsividade no Mobile
 - Remover lógica de ThemeSwitcher
+(21/08/2024)
 - Adicionar News Widget: https://www.tradingview.com/widget-docs/widgets/news/top-stories/
     - Remover quando mobile
 - Adicionar trade book
